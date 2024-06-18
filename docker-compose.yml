@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  db-mongo:
+    image: mongo:latest
+    container_name: db-mongo
+    ports:
+      - "{MOOMONGO_PORT}:27017"
+    volumes:
+      - ./mongo-db-data:/data/db
+
+volumes:
+  mongo-db-data:

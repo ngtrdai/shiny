@@ -1,1 +1,1 @@
-# shiny
+# **Shiny Copilot**
