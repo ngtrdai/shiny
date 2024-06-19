@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "copilot-api"
+version = "0.1.0"
+description = "Shiny Copilot API"
+authors = ["ngtrdai <ngtrdai@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.111.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[virtualenvs]
+in-project = true
+path = ".venv"

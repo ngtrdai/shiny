@@ -1,6 +1,12 @@
 version: '3.7'
 
 services:
+  copilot-api:
+    build: ./copilot-api
+    ports:
+      - "{COPILOT_API_PORT}:8000"
+    depends_on:
+      - db-mongo
   db-mongo:
     image: mongo:latest
     container_name: db-mongo
