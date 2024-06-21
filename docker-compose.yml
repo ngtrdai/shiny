@@ -1,19 +1,36 @@
-version: '3.7'
+version: '3.9'
 
 services:
+  nginx:
+    image: nginx:1.25.3
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/templates:/etc/nginx/nginx.conf
+      - ./nginx/configuration/custom_proxy_settings.conf:/etc/nginx/conf.d/custom_proxy_settings.conf
+    networks:
+      - shiny-network
   copilot-api:
     build: ./copilot-api
     ports:
-      - "{COPILOT_API_PORT}:8000"
-    depends_on:
-      - db-mongo
-  db-mongo:
-    image: mongo:latest
-    container_name: db-mongo
-    ports:
-      - "{MOOMONGO_PORT}:27017"
-    volumes:
-      - ./mongo-db-data:/data/db
+      - "8000:8000"
+    # depends_on:
+    #   - db-mongo
+    networks:
+      - shiny-network
+  # db-mongo:
+  #   image: mongo:latest
+  #   container_name: db-mongo
+  #   ports:
+  #     - "{MOOMONGO_PORT}:27017"
+  #   volumes:
+  #     - ./mongo-db-data:/data/db
 
 volumes:
   mongo-db-data:
+
+networks:
+  shiny-network:
+    driver: bridge
+    name: shiny-network

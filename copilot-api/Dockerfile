@@ -5,6 +5,9 @@ LABEL maintainer="Dai Nguyen Trong <ngtrdai@hotmail.com>"
 RUN apt-get update \
     && apt-get install -y curl
 RUN curl -sSL https://install.python-poetry.org | python3 -
+
+ENV PATH="${PATH}:/root/.local/bin"
+
 RUN poetry config virtualenvs.create false
 
 WORKDIR /app
