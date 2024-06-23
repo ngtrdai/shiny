@@ -1,10 +1,18 @@
 server {
-    server_name copilot.shiny.local
+    server_name copilot.shiny.local;
 
     # Docker DNS
-    resolver 127.0.0.11
+    resolver 127.0.0.11;
 
     location / {
-        proxy_pass http://copilot-api;
+        proxy_pass http://copilot-api:8000;
+    }
+}
+
+server {
+    server_name id.shiny.local;
+
+    location / {
+        proxy_pass http://identity;
     }
 }
