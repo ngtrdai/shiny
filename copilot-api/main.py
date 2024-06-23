@@ -5,8 +5,8 @@ from constants import app_constant
 from routers import health_check
 
 app = FastAPI(
-    title="Shiny Copilot API",
-    description="API for the Shiny Copilot project"
+    title=app_constant.APP_NAME,
+    description=app_constant.APP_DESC
 )
 
 
