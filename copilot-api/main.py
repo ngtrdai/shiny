@@ -9,6 +9,8 @@ app = FastAPI(
     description=app_constant.APP_DESC
 )
 
+idp = FastAPIKeyCloak(app, "keycloak.json")
+
 
 app.include_router(health_check.router, prefix=app_constant.API_V1_PREFIX)
 
