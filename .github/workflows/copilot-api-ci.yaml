@@ -29,7 +29,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=${{ github.repository }}
+            -Dsonar.projectKey=ngtrdai_shiny
             -Dsonar.organization=ngtrdai
             -Dsonar.sources=.
             -Dsonar.host.url=https://sonarcloud.io
