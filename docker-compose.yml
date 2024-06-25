@@ -46,6 +46,7 @@ services:
       - shiny-network
   copilot-api:
     build: ./copilot-api
+    image: ghcr.io/ngtrdai/shiny-copilot-api:latest
     ports:
       - "${COPILOT_API_PORT}:8000"
     # depends_on:
