@@ -1,22 +1,22 @@
-name: {{SERVICE_NAME}} service ci
+name: Copilot API service ci
 
 on:
   push:
     branches: ["main"]
     paths:
-      - "{{SERVICE_NAME}}/**"
-      - ".github/workflows/{{SERVICE_NAME}}-ci.yaml"
+      - "copilot-api/**"
+      - ".github/workflows/copilot-api-ci.yaml"
   pull_request:
     branches: ["main"]
     paths:
-      - "{{SERVICE_NAME}}/**"
-      - ".github/workflows/{{SERVICE_NAME}}-ci.yaml"
-  
+      - "copilot-api/**"
+      - ".github/workflows/copilot-api-ci.yaml"
+
   workflow_dispatch:
-  
+
 jobs:
   Build:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -32,6 +32,6 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: docker/build-push-action@v3
         with:
-          context: ./{{SERVICE_NAME}}
+          context: ./copilot-api
           push: true
-          tags: ghcr.io/ngtrdai/shiny-{{SERVICE_NAME}}:latest
+          tags: ghcr.io/ngtrdai/shiny-copilot-api:latest
