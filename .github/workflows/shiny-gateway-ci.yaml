@@ -6,11 +6,6 @@ on:
     paths:
       - "shiny-gateway/**"
       - ".github/workflows/shiny-gateway-ci.yaml"
-  pull_request:
-    branches: ["main"]
-    paths:
-      - "shiny-gateway/**"
-      - ".github/workflows/shiny-gateway-ci.yaml"
 
   workflow_dispatch:
 

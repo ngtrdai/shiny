@@ -28,3 +28,11 @@ server {
         proxy_pass http://shiny-gateway:3000;
     }
 }
+
+server {
+    server_name shiny.local;
+
+    location / {
+        proxy_pass http://shiny-ui:3001;
+    }
+}

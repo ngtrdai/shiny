@@ -1,14 +1,14 @@
-name: {{SERVICE_NAME}} service ci
+name: Shiny UI service ci
 
 on:
   push:
     branches: ["main"]
     paths:
-      - "{{SERVICE_NAME}}/**"
-      - ".github/workflows/{{SERVICE_NAME}}-ci.yaml"
-  
+      - "shiny-ui/**"
+      - ".github/workflows/shiny-ui-ci.yaml"
+
   workflow_dispatch:
-  
+
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -27,6 +27,6 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: docker/build-push-action@v3
         with:
-          context: ./{{SERVICE_NAME}}
+          context: ./shiny-ui
           push: true
-          tags: ghcr.io/ngtrdai/shiny-{{SERVICE_NAME}}:latest
+          tags: ghcr.io/ngtrdai/shiny-shiny-ui:latest

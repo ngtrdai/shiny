@@ -16,6 +16,7 @@ services:
       - identity
       - shiny-gateway
       - copilot-api
+      - shiny-ui
   identity:
     image: quay.io/keycloak/keycloak:21.0.2
     container_name: identity
@@ -59,6 +60,13 @@ services:
       - "${GATEWAY_PORT}:3000"
     volumes:
       - ./shiny-gateway:/app
+    networks:
+      - shiny-network
+  shiny-ui:
+    build: ./shiny-ui
+    container_name: shiny-ui
+    ports:
+      - "${SHINY_UI_PORT}:3001"
     networks:
       - shiny-network
   copilot-api:
