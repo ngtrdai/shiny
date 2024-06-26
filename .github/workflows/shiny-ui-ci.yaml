@@ -29,4 +29,4 @@ jobs:
         with:
           context: ./shiny-ui
           push: true
-          tags: ghcr.io/ngtrdai/shiny-shiny-ui:latest
+          tags: ghcr.io/ngtrdai/shiny-ui:latest
