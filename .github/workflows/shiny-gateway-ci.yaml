@@ -1,16 +1,16 @@
-name: Copilot API service ci
+name: Shiny Gateway service ci
 
 on:
   push:
     branches: ["main"]
     paths:
-      - "copilot-api/**"
-      - ".github/workflows/copilot-api-ci.yaml"
+      - "shiny-gateway/**"
+      - ".github/workflows/shiny-gateway-ci.yaml"
   pull_request:
     branches: ["main"]
     paths:
-      - "copilot-api/**"
-      - ".github/workflows/copilot-api-ci.yaml"
+      - "shiny-gateway/**"
+      - ".github/workflows/shiny-gateway-ci.yaml"
 
   workflow_dispatch:
 
@@ -32,6 +32,6 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: docker/build-push-action@v3
         with:
-          context: ./copilot-api
+          context: ./shiny-gateway
           push: true
-          tags: ghcr.io/ngtrdai/shiny-copilot-api:latest
+          tags: ghcr.io/ngtrdai/shiny-gateway:latest
