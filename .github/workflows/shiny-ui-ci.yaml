@@ -1,0 +1,42 @@
+name: Shiny UI service ci
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "shiny-ui/**"
+      - ".github/workflows/shiny-ui-ci.yaml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "shiny-ui/**"
+      - ".github/workflows/shiny-ui-ci.yaml"
+
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Analyze with SonarCloud
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/main' }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -pl cart -am
+      - name: Login to the Container registry
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.TOKEN }}
+      - name: Build and push Docker Images
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: docker/build-push-action@v3
+        with:
+          context: ./shiny-ui
+          push: true
+          tags: ghcr.io/ngtrdai/shiny-shiny-ui:latest
