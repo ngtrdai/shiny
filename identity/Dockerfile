@@ -8,7 +8,7 @@ COPY ./identity-webhook/src ./src
 RUN rm -rf ~/.m2/repository
 RUN mvn clean package
 
-FROM quay.io/keycloak/keycloak:25.0.1
+FROM quay.io/keycloak/keycloak:21.1.2
 
 WORKDIR /opt/keycloak
 

@@ -29,6 +29,7 @@ services:
       KC_DB_USERNAME: ${KC_DB_USERNAME}
       KC_DB_PASSWORD: ${KC_DB_PASSWORD}
       KC_HTTP_PORT: ${KC_HTTP_PORT}
+      GATEWAY_URL: "http://shiny-gateway:${GATEWAY_PORT}"
     volumes:
       - ./identity/themes/shiny/theme:/opt/keycloak/themes
     depends_on:
