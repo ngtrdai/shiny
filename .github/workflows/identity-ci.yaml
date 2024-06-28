@@ -1,0 +1,32 @@
+name: Identity service ci
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "identity/**"
+      - ".github/workflows/identity-ci.yaml"
+
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Login to the Container registry
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.TOKEN }}
+      - name: Build and push Docker Images
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: docker/build-push-action@v3
+        with:
+          context: ./identity
+          push: true
+          tags: ghcr.io/ngtrdai/shiny-identity:latest
